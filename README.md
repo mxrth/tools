@@ -1,4 +1,4 @@
-pphgen is a simple tool to generate secure _p_ass_ph_rases
+pphgen is a simple tool to generate secure *p*ass*ph*rases
 
 install (assumes go 1.13 or newer in module mode):
 
