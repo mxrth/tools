@@ -9,9 +9,9 @@ import (
 	"os"
 )
 
-//go:generate go run ../wordlist2go/main.go eff_large_wordlist
-//go:generate go run ../wordlist2go/main.go eff_short_wordlist_1
-//go:generate go run ../wordlist2go/main.go diceware_german
+//go:generate go run wordlist2go.go eff_large_wordlist
+//go:generate go run wordlist2go.go eff_short_wordlist_1
+//go:generate go run wordlist2go.go diceware_german
 
 var lst = flag.String("list", "eff", "select wordlist to use. Choose from 'eff', 'eff_short' and 'de'")
 var num = flag.Int("n", 5, "number of words to use")
