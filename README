@@ -2,7 +2,7 @@ pphgen is a simple tool to generate secure passphrases
 
 install (assumes go 1.13 or newer in module mode):
 
-go get github.com/mxrth/pphgen/cmd/pphgen
+go get github.com/mxrth/pphgen
 
 Usage of pphgen:
   -entropy
