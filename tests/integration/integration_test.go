@@ -2,30 +2,46 @@ package integration
 
 import (
 	"flag"
+	"fmt"
 	"os"
+	"os/exec"
 	"testing"
 )
 
 func TestMain(m *testing.M) {
 	flag.Parse()
-	// err := buildExecutables()
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	os.Exit(1)
-	// }
+	err := os.Chdir("../..") //we are in ./tests/integration/ now we are in .
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	err = buildExecutables()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
-	os.Exit(m.Run())
+	r := m.Run()
+
+	//removeExecutables()
+	os.Exit(r)
 }
 
 func buildExecutables() error {
-	err := os.Chdir("../..") //we are in ./tests/integration/ now we are in .
+	os.Mkdir("testbuilds", 0777)
+	//pass ldflags to be consistent with the artifacts built by github actions
+	c := exec.Command("go", "build", "-o", "testbuilds/", "-ldflags=-s -w", "./...")
+	o, err := c.CombinedOutput()
 	if err != nil {
+		fmt.Println(string(o))
+		fmt.Println(err)
 		return err
 	}
-
-	os.Mkdir("testbuilds", os.ModeDir)
 	return nil
-	//run go build -o testbuilds/ -race
+}
+
+func removeExecutables() {
+	os.RemoveAll("testbuilds/")
 }
 
 // func RunCmd(name string, args string...) Result {
