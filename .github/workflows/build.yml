@@ -10,15 +10,15 @@ jobs:
       matrix:
         go-version: [1.14.x] #build only on latest version
         platform: [ubuntu-latest, windows-latest]
-      runs-on: ${{ matrix.platform }}
-      steps:
-        - name: Install Go
-          uses: actions/setup-go@v2
-          with:
-            go-version: ${{ matrix.go-version }}
-        - name: Checkout code
-          uses: actions/checkout@v2
-        - name: Build artifacts
-          run: 
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - name: Install Go
+        uses: actions/setup-go@v2
+            with:
+                go-version: ${{ matrix.go-version }}
+    - name: Checkout code
+        uses: actions/checkout@v2
+    - name: Build artifacts
+        run: 
             | mkdir bin
             | go build -o bin ./...
