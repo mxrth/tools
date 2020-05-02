@@ -2,7 +2,7 @@ name: Build Artifacts
 
 on:
   push:
-    branches: master
+    branches: [ master ]
 
 jobs:
   test:
@@ -12,13 +12,18 @@ jobs:
         platform: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-    - name: Install Go
-        uses: actions/setup-go@v2
-        with:
+        - name: Install Go
+          uses: actions/setup-go@v2
+          with:
             go-version: ${{ matrix.go-version }}
-    - name: Checkout code
-        uses: actions/checkout@v2
-    - name: Build artifacts
-        run: 
-            | mkdir bin
-            | go build -o bin ./...
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: Build artifacts
+          run: 
+            | mkdir build
+            | go build -o build ./...
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: ${{ matrix.platform }}-binaries
+            path: build/
