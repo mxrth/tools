@@ -33,6 +33,8 @@ func main() {
 	flag.Parse()
 	var list []string
 	switch *lst {
+	default:
+		fmt.Fprintf(os.Stderr, "ERROR: Unknown list. Choose one of 'eff', 'eff_short' or 'de'\n")
 	case "eff":
 		list = eff_large_wordlist
 	case "eff_short":
