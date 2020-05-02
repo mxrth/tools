@@ -21,7 +21,7 @@ jobs:
         - name: Build artifacts
           run: |
             mkdir build
-            go build -o build ./...
+            go build -o build -ldflags="-s -w" ./...
         - name: Upload artifacts
           uses: actions/upload-artifact@v2
           with:
