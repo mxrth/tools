@@ -24,6 +24,7 @@ func buildExecutables() error {
 	}
 
 	os.Mkdir("testbuilds", os.ModeDir)
+	return nil
 	//run go build -o testbuilds/ -race
 }
 
