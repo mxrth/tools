@@ -30,6 +30,7 @@ var num = flag.Int("n", 5, "number of words to use")
 var ent = flag.Bool("entropy", false, "print estimated entropy")
 
 func main() {
+	flag.CommandLine.SetOutput(os.Stdout)
 	flag.Parse()
 	var list []string
 	switch *lst {
